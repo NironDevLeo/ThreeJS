@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -35,6 +35,150 @@
         }
 
         animate()
+    </script>
+</body>
+
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =================================================================== -->
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="module">
+        import * as THREE from 'https://unpkg.com/three/build/three.module.js';
+
+        const scene = new THREE.Scene()
+        const renderer = new THREE.WebGLRenderer()
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000)
+
+
+
+        // ==================CÔNE===================
+        // const points = [];
+        // for ( let i = 0; i < 10; i ++ ) {
+        // points.push( new THREE.Vector2( Math.sin( i * 0.2 ) * 10 + 5, ( i - 5 ) * 2 ) );
+        // }
+        // const geometry = new THREE.LatheGeometry( points )
+
+
+
+        // ===================CYLINDRE=================
+        // const geometry = new THREE.CylinderGeometry( 5, 5, 20, 32 );
+
+
+
+        // ==================EXTRUDE==================
+        // const length = 12, width = 8;
+        // const shape = new THREE.Shape();
+        // shape.moveTo(0, 0);
+        // shape.lineTo(0, width);
+        // shape.lineTo(length, width);
+        // shape.lineTo(length, 0);
+        // shape.lineTo(0, 0);
+        // const extrudeSettings = {
+        //     steps: 2,
+        //     depth: 16,
+        //     bevelEnabled: true,
+        //     bevelThickness: 1,
+        //     bevelSize: 1,
+        //     bevelOffset: 0,
+        //     bevelSegments: 1
+        // };
+        // const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+
+
+
+        // =====================RING================
+        // const geometry = new THREE.RingGeometry( 1, 5, 32 );
+
+
+        // ================SHAP================
+        // const x = 0, y = 0;
+
+        // const heartShape = new THREE.Shape();
+
+        // heartShape.moveTo(x + 5, y + 5);
+        // heartShape.bezierCurveTo(x + 5, y + 5, x + 4, y, x, y);
+        // heartShape.bezierCurveTo(x - 6, y, x - 6, y + 7, x - 6, y + 7);
+        // heartShape.bezierCurveTo(x - 6, y + 11, x - 3, y + 15.4, x + 5, y + 19);
+        // heartShape.bezierCurveTo(x + 12, y + 15.4, x + 16, y + 11, x + 16, y + 7);
+        // heartShape.bezierCurveTo(x + 16, y + 7, x + 16, y, x + 10, y);
+        // heartShape.bezierCurveTo(x + 7, y, x + 5, y + 5, x + 5, y + 5);
+
+        // const geometry = new THREE.ShapeGeometry(heartShape);
+
+
+
+        // ==================SPHERE==================
+        // const geometry = new THREE.SphereGeometry( 15, 32, 16 );
+
+
+        // =================TORUS==============
+        // const geometry = new THREE.TorusGeometry( 10, 3, 16, 100 );
+
+
+        // =================TORUSKNOT=================
+        const geometry = new THREE.TorusKnotGeometry( 10, 3, 100, 16 );
+
+
+
+
+        const material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true })
+        const cylinder = new THREE.Mesh(geometry, material)
+
+        scene.add(cylinder)
+        camera.position.z = 20
+
+        renderer.setSize(window.innerWidth, window.innerHeight)
+        document.body.appendChild(renderer.domElement)
+
+
+        renderer.render(scene, camera)
+
+
+        function animate() {
+            cylinder.rotation.x += 0.005
+            cylinder.rotation.y += 0.005
+            cylinder.rotation.z += 0.005
+            // camera.rotation.x += 0.005
+            // camera.rotation.y += 0.005
+            renderer.render(scene, camera)
+            requestAnimationFrame(animate)
+        }
+
+        animate()
+
     </script>
 </body>
 
